@@ -60,7 +60,7 @@ const Form = () => {
                 signer
             );
 
-            const CampaignAmount = ethers.utils.parseEther(form.requiredAmount);
+            const CampaignAmount = ethers.utils.parseEther(form.requiredAmount);  //Ether (matic) ko wei me convert krega
 
             const campaignData = await contract.createCampaign(
                 form.campaignTitle,

@@ -16,7 +16,7 @@ module.exports = {
   networks: {
     hardhat: {},
     polygon: {
-      url : process.env.NEXT_PUBLIC_RPC_URL,
+      url: process.env.NEXT_PUBLIC_RPC_URL,
       accounts: [privateKey]
     }
   }

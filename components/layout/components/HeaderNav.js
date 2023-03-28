@@ -2,17 +2,18 @@ import React from 'react'
 import styled from 'styled-components';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 const HeaderNav = () => {
   const Router=useRouter();
   return (
     <HeaderNavWrapper>
-      <Link href={'/'}><HeaderNavLinks active={Router.pathname =='/' ? true:false}>
+      <Link href={'/'} style={{ textDecoration: 'none' }}><HeaderNavLinks active={Router.pathname =='/' ? true:false}>
         Campaigns
       </HeaderNavLinks></Link>
-     <Link href={'/createcampaign'}> <HeaderNavLinks active={Router.pathname == '/createcampaign' ? true : false}>
+     <Link href={'/createcampaign'} style={{textDecoration: 'none'}}> <HeaderNavLinks active={Router.pathname == '/createcampaign' ? true : false}>
         Create Campaign
       </HeaderNavLinks></Link>
-      <Link href={'/dashboard'}><HeaderNavLinks active={Router.pathname == '/dashboard' ? true : false}>
+      <Link href={'/dashboard'} style={{ textDecoration: 'none' }}><HeaderNavLinks active={Router.pathname == '/dashboard' ? true : false}>
         Dashboard
       </HeaderNavLinks></Link>
     </HeaderNavWrapper>
@@ -39,5 +40,6 @@ justify-content: space-between;
 padding: 0 5px 0 5px;
 border-radius: 10px;
 cursor: pointer;
+text-decoration: none;
 `
 export default HeaderNav

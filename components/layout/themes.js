@@ -7,10 +7,10 @@ const light={
 }
 const dark = {
     color: "#fff",
-    bgColor: '#000000',
-    bgImage: 'linear-gradient(180deg, rgba(32,18,63,0) -7.14%, #000000 87.01%)',
-    bgDiv: 'black',
-    bgSubDiv: 'rgb(33,36,41)'
+    bgColor: '#13131a',
+    
+    bgDiv: '#2c2f32',
+    bgSubDiv: '#1c1c24'
 }
 
 const themes= {

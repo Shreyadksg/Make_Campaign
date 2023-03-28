@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from "react";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PaidIcon from '@mui/icons-material/Paid';
@@ -7,11 +8,18 @@ import Image from 'next/image';
 import { ethers } from 'ethers';
 import CampaignFactory from '../artifacts/contracts/Campaign.sol/CampaignFactory.json'
 import { useState } from 'react';
-import Link from 'next/link';
-const { JsonRpcProvider } = require("@ethersproject/providers");
+import Link from 'next/link'
 
 export default function Index({ AllData, HealthData, EducationData, AnimalData }) {
   const [filter, setFilter] = useState(AllData);
+  const [hydrated, setHydrated] = React.useState(false);
+  React.useEffect(() => {
+    setHydrated(true);
+  }, []);
+  if (!hydrated) {
+    // Returns null on first render, so the client and server match
+    return null;
+  }
   return (
     <HomeWrapper>
 
@@ -30,12 +38,12 @@ export default function Index({ AllData, HealthData, EducationData, AnimalData }
         {/* Card */}
         {filter.map((e) => {
           return (
-            <Card key={e.title}>
-              <CardImg>
+            <Card key={e.title} style={{ borderRadius: '15px', overflow: 'hidden' }}>
+              <CardImg >
                 <Image
                   alt="Crowdfunding dapp"
+                  layout="fill" objectFit="cover"
                   src={"https://krishna.infura-ipfs.io/ipfs/" + e.image}
-                  layout="fill"
                 />
               </CardImg>
               <Title>
@@ -90,8 +98,7 @@ export async function getStaticProps() {
       amount: ethers.utils.formatEther(e.args.requiredAmount),
       address: e.args.campaignAddress
     }
-  } );//
-  console.log(AllData);
+  });
 
   const getHealthCampaigns = contract.filters.campaignCreated(null, null, null, null, null, null, 'Health');
   const HealthCampaigns = await contract.queryFilter(getHealthCampaigns);
@@ -148,6 +155,7 @@ const HomeWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  cursor: url(wand.png);
 `
 const FilterWrapper = styled.div`
   display: flex;
@@ -186,8 +194,7 @@ const Card = styled.div`
 `
 const CardImg = styled.div`
   position: relative;
-  height: 120px;
-  width: 100%;
+  height: 400px;
 `
 const Title = styled.h2`
   font-family: 'Roboto';

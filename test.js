@@ -7,6 +7,7 @@ const main = async ()=>{
     const provider=new ethers.providers.JsonRpcProvider(
         process.env.NEXT_PUBLIC_RPC_URL
     );
+    
    // console.log(provider);
     const contract= new ethers.Contract(
         process.env.NEXT_PUBLIC_ADDRESS,
@@ -14,9 +15,12 @@ const main = async ()=>{
         provider
     );
     
-    const getDeployedCampaign = contract.filters.campaignCreated();
-    let events = await contract.queryFilter(getDeployedCampaign);
-    console.log(events);
+    
+    const getData = contract.filters.campaignCreated();
+    const events1= await contract.queryFilter(getData);
+    console.log(events1);
+    
+    
 };
 
 main();
